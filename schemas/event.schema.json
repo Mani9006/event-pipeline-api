@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://pipeline.local/schemas/event.schema.json",
+  "title": "Base Event Schema",
+  "description": "Core schema for all pipeline events. Every event must conform to this base structure before type-specific validation.",
+  "type": "object",
+  "required": ["id", "type", "timestamp", "source", "payload"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the event"
+    },
+    "type": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "description": "Event type discriminator for pipeline routing",
+      "examples": ["user.login", "order.created", "payment.processed"]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp when the event was generated"
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "description": "System or service that emitted the event"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "default": "1.0.0",
+      "description": "Schema version for the event payload"
+    },
+    "payload": {
+      "type": "object",
+      "description": "Event-specific data payload",
+      "additionalProperties": true
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Optional metadata for enrichment and tracing",
+      "properties": {
+        "correlationId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "userAgent": {
+          "type": "string"
+        },
+        "ipAddress": {
+          "type": "string",
+          "format": "ipv4"
+        },
+        "traceId": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

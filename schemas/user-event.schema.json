@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://pipeline.local/schemas/user-event.schema.json",
+  "title": "User Event Schema",
+  "description": "Extended schema for user-related events such as registrations, logins, and profile updates.",
+  "type": "object",
+  "allOf": [
+    { "$ref": "./event.schema.json" }
+  ],
+  "required": ["id", "type", "timestamp", "source", "payload"],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "user.registered",
+        "user.login",
+        "user.logout",
+        "user.profile_updated",
+        "user.password_changed",
+        "user.deleted"
+      ]
+    },
+    "payload": {
+      "type": "object",
+      "required": ["userId"],
+      "properties": {
+        "userId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique identifier of the user"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "username": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 64
+        },
+        "role": {
+          "type": "string",
+          "enum": ["admin", "user", "guest"],
+          "default": "user"
+        },
+        "ipAddress": {
+          "type": "string"
+        },
+        "userAgent": {
+          "type": "string"
+        },
+        "metadata": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}
