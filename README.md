@@ -650,3 +650,38 @@ This project was developed over 3 weeks with 25 commits following conventional c
 ## License
 
 [MIT](LICENSE)
+
+---
+
+<!-- showcase:start -->
+
+## Architecture
+
+```mermaid
+flowchart LR
+    Producer[Producer] -->|POST /events| API[Express API]
+    API --> Validator[Schema Validator<br/>Ajv]
+    Validator --> Router[Event Router]
+    Router --> Processors[Processors]
+    Processors --> Sinks[Sinks]
+    Validator -.errors.-> DLQ[(Dead Letter Queue)]
+```
+
+## Test Results
+
+![Test results](docs/test_results.png)
+
+**50 passing**, **17 failing**, **0 skipped** (total 67, framework: Jest)
+
+## References & Further Reading
+
+- Kreps, J. (2014). *I ❤ Logs: Event Data, Stream Processing, and Data Integration.* O'Reilly.
+- JSON Schema Specification. None [↗](https://json-schema.org/specification.html)
+
+## Author
+
+**Manikanta Reddy Mandadhi** — Senior Data Scientist (RAG / Agentic AI)
+
+GitHub: [@Mani9006](https://github.com/Mani9006/event-pipeline-api) · LinkedIn: [reddy1999](https://www.linkedin.com/in/reddy1999) · Portfolio: [manikantabio.com](https://www.manikantabio.com)
+
+<!-- showcase:end -->
