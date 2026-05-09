@@ -655,6 +655,20 @@ This project was developed over 3 weeks with 25 commits following conventional c
 
 <!-- showcase:start -->
 
+## Research Report
+
+**Schema-Validated Event Ingestion with Backpressure-Aware Routing**
+
+_A throughput study of event ingestion under JSON Schema enforcement and downstream-consumer fan-out_
+
+A self-contained research-grade report (Abstract, Introduction, Research Problem, Research Questions, Literature Review, Research Method, Data Description, Analysis, Discussion, Conclusion, Future Work, References) is published with this repository.
+
+[Read the full report (PDF)](docs/research_report.pdf)
+
+**Keywords:** event-driven architecture, JSON Schema, back-pressure, stream processing, schema evolution
+
+![Research metrics](docs/research_metrics.png)
+
 ## Architecture
 
 ```mermaid
